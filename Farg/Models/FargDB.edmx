@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FargModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CarDetail">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InventoryType" Type="nchar" MaxLength="10" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Year" Type="nchar" MaxLength="10" />
+          <Property Name="Make" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="Trim" Type="nvarchar" MaxLength="50" />
+          <Property Name="Color" Type="char" MaxLength="20" />
+          <Property Name="VehicleType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Feature" Type="nvarchar" MaxLength="50" />
+          <Property Name="Milleage" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vin" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Transmission" Type="nchar" MaxLength="10" />
+          <Property Name="EngineSize" Type="nvarchar" MaxLength="50" />
+          <Property Name="DriveType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExteriroColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="InteriroColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="image" Type="varbinary(max)" />
+          <Property Name="CarPrice" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarMonthlyPayment" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FinanceForm">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverLicense" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResidentialState" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="MonthlyRent_Mortage" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrentEmployee" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="GrossIncome" Type="nvarchar" MaxLength="50" />
+          <Property Name="SocialSecurity" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarYear" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarMake" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarModel" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarMilleage" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarVin" Type="nvarchar" MaxLength="50" />
+          <Property Name="Term" Type="nvarchar" MaxLength="50" />
+          <Property Name="DownPayment" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vehicle" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SellOrTradeInForm">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="YearOfCar" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarMake" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarModel" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarMilleage" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarVin" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarOwnershipStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Farg.dbo.UserLogin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LoginErrorMessage" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="FargModelStoreContainer">
+          <EntitySet Name="CarDetail" EntityType="Self.CarDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinanceForm" EntityType="Self.FinanceForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SellOrTradeInForm" EntityType="Self.SellOrTradeInForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLogin" EntityType="Self.UserLogin" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserLogin].[UserName] AS [UserName], 
+    [UserLogin].[Password] AS [Password], 
+    [UserLogin].[LoginErrorMessage] AS [LoginErrorMessage]
+    FROM [dbo].[UserLogin] AS [UserLogin]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FargModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CarDetail">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InventoryType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Year" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Make" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Trim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Feature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Milleage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Transmission" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="EngineSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DriveType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExteriroColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InteriroColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CarPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarMonthlyPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FinanceForm">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverLicense" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResidentialState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MonthlyRent_Mortage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentEmployee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GrossIncome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SocialSecurity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarMake" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarModel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarMilleage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarVin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Term" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DownPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vehicle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SellOrTradeInForm">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="YearOfCar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarMake" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarModel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarMilleage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarVin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarOwnershipStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginErrorMessage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="FargEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarDetails" EntityType="Self.CarDetail" />
+          <EntitySet Name="FinanceForms" EntityType="Self.FinanceForm" />
+          <EntitySet Name="SellOrTradeInForms" EntityType="Self.SellOrTradeInForm" />
+          <EntitySet Name="UserLogins" EntityType="Self.UserLogin" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FargModelStoreContainer" CdmEntityContainer="FargEntities">
+          <EntitySetMapping Name="CarDetails">
+            <EntityTypeMapping TypeName="FargModel.CarDetail">
+              <MappingFragment StoreEntitySet="CarDetail">
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="InventoryType" ColumnName="InventoryType" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Trim" ColumnName="Trim" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="Feature" ColumnName="Feature" />
+                <ScalarProperty Name="Milleage" ColumnName="Milleage" />
+                <ScalarProperty Name="Vin" ColumnName="Vin" />
+                <ScalarProperty Name="StockNumber" ColumnName="StockNumber" />
+                <ScalarProperty Name="Transmission" ColumnName="Transmission" />
+                <ScalarProperty Name="EngineSize" ColumnName="EngineSize" />
+                <ScalarProperty Name="DriveType" ColumnName="DriveType" />
+                <ScalarProperty Name="ExteriroColor" ColumnName="ExteriroColor" />
+                <ScalarProperty Name="InteriroColor" ColumnName="InteriroColor" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="CarPrice" ColumnName="CarPrice" />
+                <ScalarProperty Name="CarMonthlyPayment" ColumnName="CarMonthlyPayment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinanceForms">
+            <EntityTypeMapping TypeName="FargModel.FinanceForm">
+              <MappingFragment StoreEntitySet="FinanceForm">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DriverLicense" ColumnName="DriverLicense" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ResidentialState" ColumnName="ResidentialState" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="MonthlyRent_Mortage" ColumnName="MonthlyRent_Mortage" />
+                <ScalarProperty Name="CurrentEmployee" ColumnName="CurrentEmployee" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="GrossIncome" ColumnName="GrossIncome" />
+                <ScalarProperty Name="SocialSecurity" ColumnName="SocialSecurity" />
+                <ScalarProperty Name="CarYear" ColumnName="CarYear" />
+                <ScalarProperty Name="CarMake" ColumnName="CarMake" />
+                <ScalarProperty Name="CarModel" ColumnName="CarModel" />
+                <ScalarProperty Name="CarMilleage" ColumnName="CarMilleage" />
+                <ScalarProperty Name="CarVin" ColumnName="CarVin" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="DownPayment" ColumnName="DownPayment" />
+                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SellOrTradeInForms">
+            <EntityTypeMapping TypeName="FargModel.SellOrTradeInForm">
+              <MappingFragment StoreEntitySet="SellOrTradeInForm">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="YearOfCar" ColumnName="YearOfCar" />
+                <ScalarProperty Name="CarMake" ColumnName="CarMake" />
+                <ScalarProperty Name="CarModel" ColumnName="CarModel" />
+                <ScalarProperty Name="CarMilleage" ColumnName="CarMilleage" />
+                <ScalarProperty Name="CarVin" ColumnName="CarVin" />
+                <ScalarProperty Name="CarOwnershipStatus" ColumnName="CarOwnershipStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLogins">
+            <EntityTypeMapping TypeName="FargModel.UserLogin">
+              <MappingFragment StoreEntitySet="UserLogin">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LoginErrorMessage" ColumnName="LoginErrorMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
